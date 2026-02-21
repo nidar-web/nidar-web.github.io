@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+    content="NIdaR: NIR-guided Intrinsic Decomposition for LiDAR Intensity Reconstruction.">
+  <meta name="keywords" content="LiDAR intensity, simulation, intrinsic decomposition, NIR, sensor simulation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NIdaR: NIR-guided Intrinsic Decomposition for LiDAR Intensity Reconstruction</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <script src="./static/js/script.js"></script>
+
+</head>
+
+<body>
+
+  <!-- <nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://hypernerf.github.io">
+            HyperNeRF
+          </a>
+          <a class="navbar-item" href="https://nerfies.github.io">
+            Nerfies
+          </a>
+          <a class="navbar-item" href="https://latentfusion.github.io">
+            LatentFusion
+          </a>
+          <a class="navbar-item" href="https://photoshape.github.io">
+            PhotoShape
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav> -->
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">
+              <span style="font-weight: bolder;">
+                <span style="color: #006496;">NI</span><span style="color: #006496;">da</span><span style="color: #006496;">R</span>
+              </span>: NIR-guided Intrinsic Decomposition for LiDAR Intensity Reconstruction
+            </h1>
+            <h3 class="title is-4 conference-authors">IROS 2026 (Anonymous Submission)</h3>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">Anonymous Authors</span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">Anonymous Institution(s)</span>
+            </div>
+            <div class="column has-text-centered">
+              <span class="link-block">
+                <button class="external-link button is-normal is-rounded is-dark" disabled>
+                  <span class="icon">
+                    <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper (TBD)</span>
+                </button>
+              </span>
+              <span class="link-block">
+                <button class="external-link button is-normal is-rounded is-dark" disabled>
+                  <span class="icon">
+                    <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code (TBD)</span>
+                </button>
+              </span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- <section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/teaser.mp4"
+                type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        <span class="dnerf">Nerfies</span> turns selfie videos from your phone into
+        free-viewpoint
+        portraits.
+      </h2>
+    </div>
+  </div>
+</section> -->
+
+
+  <!-- <section class="hero is-light is-small">
+    <div class="hero-body">
+      <div class="container">
+        <div id="results-carousel" class=" carousel results-carousel">
+          <div class="item item-room">
+            <video poster="" id="room" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/room_video_comp3.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+  
+          <div class="item item-garden">
+            <video poster="" id="garden" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/garden_video_comp3.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item item-bicycle">
+            <video poster="" id="bicycle" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/bicycle_video_comp3.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item item-bonsai">
+            <video poster="" id="bonsai" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/bonsai_video_comp3.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item item-counter">
+            <video poster="" id="counter" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/counter_video_comp3.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item item-kitchen">
+            <video poster="" id="kitchen" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/kitchen_video_comp3.mp4" type="video/mp4">
+            </video>
+          </div>
+        <div class="item item-train">
+          <video poster="" id="train" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/train_video_comp3.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-struck">
+          <video poster="" id="toby" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/truck_video_comp3.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-stump">
+          <video poster="" id="stump" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/stump_video_comp3.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        </div>
+        <p>The caption displays both the file size and the Structural Similarity Index (SSIM)</p>
+      </div>
+    </div>
+  </section> -->
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3" style="color: #006496;font-weight: bolder;">TL;DR</h2>
+          <div class="content has-text-justified">
+            <p>
+              <strong>NIdaR</strong> is a plug-and-play LiDAR intensity synthesis module that augments arbitrary LiDAR simulators
+              and re-simulation pipelines. It infers physically consistent intensity from low-cost RGB inputs and geometry,
+              requiring <em>no per-scene training/optimization</em> and <em>no intensity ground truth during deployment</em>.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3" style="color: #006496;font-weight: bolder;">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              Recent progress in LiDAR simulation has significantly improved geometric fidelity and point cloud distribution realism,
+              but the simulation of intensity information remains underdeveloped. Intensity plays a critical role in perception tasks,
+              yet most existing simulation pipelines either omit intensity entirely or depend on reconstruction-based methods that require
+              real intensity ground truth for supervised training. Such reliance incurs high data acquisition costs, limits scalability,
+              and restricts generalization across sensors and scenes. As a result, a general, scalable, and platform-agnostic solution for
+              LiDAR intensity simulation is still lacking.
+            </p>
+            <p>
+              To address this gap, we propose <strong>NIdaR</strong>, a <em>plug-and-play</em> intensity synthesis module that augments arbitrary
+              LiDAR simulators and re-simulation pipelines. NIdaR infers physically consistent intensity from low-cost RGB inputs and geometry,
+              requiring <em>no per-scene training/optimization</em> and <em>no intensity ground truth during deployment</em>. We implement NIdaR as a
+              hierarchical UNet+DeepLabV3 intrinsic decomposition network with lightweight distribution calibration, achieving millisecond-level
+              feed-forward inference while avoiding the hours-level scene fitting cost of reconstruction-based baselines. Extensive experiments on
+              nuScenes, Waymo and KITTI-360 verify the effectiveness and cross-scene generalization of NIdaR, and we further validate its scalability
+              by integrating it into Isaac Sim, UE5, and generative simulation pipelines. Our approach provides a unified solution that equips existing
+              LiDAR simulation systems with realistic intensity generation capability. To benefit the research community, we will release our codes upon
+              paper acceptance.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3" style="color: #006496;font-weight: bolder;">Contributions</h2>
+          <div class="content has-text-justified">
+            <ul>
+              <li>
+                We propose a general simulation framework NIdaR for inferring LiDAR intensity from RGB images, enabling physically consistent intensity
+                generation <em>without per-scene training/optimization</em> and without requiring intensity ground truth during deployment.
+              </li>
+              <li>
+                We design a hierarchical UNet+DeepLabV3 intrinsic decomposition network tailored to NIR characteristics, achieving millisecond-level
+                feed-forward intensity inference with strong cross-scene generalization.
+              </li>
+              <li>
+                We realize universal integration of NIdaR into multiple LiDAR simulators, including Unreal Engine 5 (UE5) and Isaac-Sim, demonstrating its
+                practicality, generality, and scalability.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container ">
+      <div class=" has-text-centered">
+        <h2 class="title is-3" style="color: #006496;font-weight: bolder;">Render Comparisons</h2>
+        <div class="content has-text-justified">
+          <p>
+
+          </p>
+        </div>
+        <div class="columns is-centered">
+          <!-- Visual Effects. -->
+          <div class="column">
+            <div class="content">
+              <div class="columns is-centered">
+                <div class="column is-full-width">
+                  <div id="example1" class="bal-container-small">
+
+                    <div class="bal-after">
+                      <img src="./static/images/render/our_nice_slam_render.png">
+                      <div class="bal-afterPosition afterLabel" style="z-index:1;">
+                        NIdaR
+                      </div>
+                    </div>
+
+                    <div class="bal-before" style="width:96.4968152866242%;">
+                      <div class="bal-before-inset" style="width: 539px;">
+                        <img src="./static/images/render/nice_slam_render.png">
+                        <div class="bal-beforePosition beforeLabel">
+                          Baseline
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="bal-handle" style="left:96.4968152866242%;">
+                      <span class=" handle-left-arrow"></span>
+                      <span class="handle-right-arrow"></span>
+                    </div>
+
+                  </div>
+
+
+                  <div id="example2" class="bal-container-small">
+
+                    <div class="bal-after">
+                      <img src="./static/images/render/our_co_slam_render.jpg">
+                      <div class="bal-afterPosition afterLabel">
+                        NIdaR
+                      </div>
+                    </div>
+
+                    <div class="bal-before" style="width: 50%;">
+                      <div class="bal-before-inset" style="width: 539px;">
+                        <img src="./static/images/render/co_slam_render.jpg">
+                        <div class="bal-beforePosition beforeLabel">
+                          Baseline
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="bal-handle" style="left: 50%;">
+                      <span class=" handle-left-arrow"></span>
+                      <span class="handle-right-arrow"></span>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--/ Visual Effects. -->
+
+          <!-- Matting. -->
+          <div class="column">
+            <div class="columns is-centered">
+              <div class="column content">
+
+                <div id="example4" class="bal-container-small">
+                  <div class="bal-after">
+                    <img src="./static/images/render/our_point_slam_render.png">
+                    <div class="bal-afterPosition afterLabel" style="z-index:1;">
+                      NIdaR
+                    </div>
+                  </div>
+
+                  <div class="bal-before" style="width:62.10191082802548%;">
+                    <div class="bal-before-inset" style="width: 539px;">
+                      <img src="./static/images/render/point_slam_render.png">
+                      <div class="bal-beforePosition beforeLabel">
+                        Baseline
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="bal-handle" style="left:62.10191082802548%;">
+                    <span class=" handle-left-arrow"></span>
+                    <span class="handle-right-arrow"></span>
+                  </div>
+
+                </div>
+
+                <div id="example5" class="bal-container-small">
+                  <div class="bal-after">
+                    <img src="./static/images/render/our_e_slam_render.jpg">
+                    <div class="bal-afterPosition afterLabel" style="z-index:1;">
+                      NIdaR
+                    </div>
+                  </div>
+
+                  <div class="bal-before" style="width:56.77179962894249%;">
+                    <div class="bal-before-inset" style="width: 628px;">
+                      <img src="./static/images/render/e_slam_render.jpg">
+                      <div class="bal-beforePosition beforeLabel">
+                        Baseline
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="bal-handle" style="left:56.77179962894249%;">
+                    <span class=" handle-left-arrow"></span>
+                    <span class="handle-right-arrow"></span>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <script>
+    new BeforeAfter({
+      id: '#example1'
+    });
+    new BeforeAfter({
+      id: '#example2'
+    });
+    new BeforeAfter({
+      id: '#example4'
+    });
+    new BeforeAfter({
+      id: '#example5'
+    });
+
+  </script>
+
+<!-- 
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Related Links</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            Needs update
+          </p>
+         
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section> -->
+  
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@inproceedings{anonymous2026nidar,
+  author    = {Anonymous Authors},
+  title     = {NIdaR: NIR-guided Intrinsic Decomposition for LiDAR Intensity Reconstruction},
+  booktitle = {IROS},
+  year      = {2026},
+}</code></pre>
+  </div>
+</section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <span class="icon-link" title="Paper (TBD)">
+          <i class="fas fa-file-pdf"></i>
+        </span>
+        <span class="icon-link" title="Code (TBD)">
+          <i class="fab fa-github"></i>
+        </span>
+      </div>
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              This website is licensed under a <a rel="license"
+                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+                Commons Attribution-ShareAlike 4.0 International License</a>.
+            </p>
+            <p>
+              This website is a lightweight static template for an academic project page.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
