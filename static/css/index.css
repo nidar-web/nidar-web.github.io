@@ -401,9 +401,15 @@ body {
   margin-bottom: 0.25rem;
 }
 .conference-logo {
-  height: 28px;
+  height: 40px;
   width: auto;
   display: inline-block;
+}
+
+@media (max-width: 640px) {
+  .conference-logo {
+    height: 28px;
+  }
 }
 
 /* "with [logo] Platform" kept on one line, wraps as a unit after the main title text */
