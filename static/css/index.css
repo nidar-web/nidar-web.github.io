@@ -401,16 +401,11 @@ body {
   margin-bottom: 0.25rem;
 }
 .conference-logo {
-  height: 40px;
+  height: 56px;
   width: auto;
   display: inline-block;
 }
-
-@media (max-width: 640px) {
-  .conference-logo {
-    height: 28px;
-  }
-}
+/* Removed small-screen shrink rule so the IROS logo stays larger */
 
 /* "with [logo] Platform" kept on one line, wraps as a unit after the main title text */
 .title-sub-line {
