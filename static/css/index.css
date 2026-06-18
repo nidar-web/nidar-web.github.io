@@ -54,7 +54,8 @@ body {
 }
 
 .publication-authors {
-    font-family: 'Google Sans', sans-serif;
+  font-family: 'Google Sans', sans-serif;
+  font-size: 0.95rem;
 }
 
 .publication-venue {
