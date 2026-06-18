@@ -405,7 +405,12 @@ body {
   width: auto;
   display: inline-block;
 }
-/* Removed small-screen shrink rule so the IROS logo stays larger */
+/* IROS logo standalone wrapper */
+.iros-logo {
+  display: block;
+  text-align: center;
+  margin: 0.25rem 0;
+}
 
 /* "with [logo] Platform" kept on one line, wraps as a unit after the main title text */
 .title-sub-line {
