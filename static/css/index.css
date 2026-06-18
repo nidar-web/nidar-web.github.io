@@ -13,6 +13,10 @@ body {
     margin-bottom: 5px;
 }
 
+.publication-links {
+  margin-top: 1.25rem;
+}
+
 .link-block {
   display: inline-block;
 }
@@ -386,6 +390,20 @@ body {
   gap: 10px;
   flex-wrap: wrap;
   margin-bottom: 0.75rem;
+}
+
+/* Conference header: logo + short title (e.g., IROS 2026) */
+.conference-header {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-bottom: 0.25rem;
+}
+.conference-logo {
+  height: 28px;
+  width: auto;
+  display: inline-block;
 }
 
 /* "with [logo] Platform" kept on one line, wraps as a unit after the main title text */
