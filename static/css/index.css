@@ -13,6 +13,38 @@ body {
     margin-bottom: 5px;
 }
 
+.link-block {
+  display: inline-block;
+}
+
+.coming-soon-link {
+  position: relative;
+}
+
+.coming-soon-link::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 8px);
+  transform: translateX(-50%);
+  padding: 0.35rem 0.65rem;
+  background-color: #363636;
+  color: #fff;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  border-radius: 4px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.15s ease;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.coming-soon-link:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
+
 .dnerf {
   font-variant: small-caps;
 }
