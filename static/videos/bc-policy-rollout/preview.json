@@ -1,0 +1,124 @@
+{
+  "title": "NIDAR behavior cloning: forward-looking simulation demo",
+  "presentation_version": "four-view-policy-rollout-preview-v1",
+  "visualization": {
+    "joint_output_view": "A single grayscale composite of the original visual representations, for display only.",
+    "shared_mapping": "The same composite rule is used for NIDAR and the grayscale control.",
+    "not_a_new_single_image_controller": true,
+    "recorded_controller_and_trajectories_unchanged": true,
+    "RGB_and_depth": "Original recorded display values, without extra contrast enhancement."
+  },
+  "selected_demo": {
+    "case": "demo_146",
+    "training_seed": 2,
+    "lighting": "nominal",
+    "selected_after_observing_outcomes": true,
+    "simulation_seconds": [
+      0,
+      5
+    ],
+    "presentation_seconds": 8,
+    "fps": 20,
+    "frames": 160,
+    "start_hold_seconds": 1,
+    "end_hold_seconds": 1.95,
+    "counts_as_new_evaluation": false
+  },
+  "development_check": {
+    "initial_states": 20,
+    "training_seeds": 3,
+    "lighting": "nominal",
+    "groups": [
+      {
+        "name": "RGBD",
+        "successes": 56,
+        "episodes": 60
+      },
+      {
+        "name": "RGBD + gray",
+        "successes": 56,
+        "episodes": 60
+      },
+      {
+        "name": "RGBD + NIDAR",
+        "successes": 58,
+        "episodes": 60
+      }
+    ],
+    "scope": "Development evaluation; not a general robustness claim."
+  },
+  "new_initial_states": {
+    "group": "NIDAR",
+    "successes": 53,
+    "episodes": 60,
+    "scope": "Separate evaluation; do not pool with development results."
+  },
+  "full_continuation": {
+    "simulation_seconds": 20,
+    "NIDAR_success_lost_seconds": 14.2,
+    "NIDAR_final_success": false,
+    "RGBD_ever_success": false,
+    "grayscale_ever_success": false
+  },
+  "media": [
+    {
+      "file": "rgbd.mp4",
+      "sha256": "d2e41bac6a2c382ac573a6ab9b116eaa20bd951a7e344d77a2fe3d5ff9d1c79d",
+      "bytes": 394057,
+      "duration_seconds": 8,
+      "frames": 160,
+      "size": [
+        1920,
+        720
+      ]
+    },
+    {
+      "file": "grayscale.mp4",
+      "sha256": "f84a8cad0d18380872af59297bbd8433204dc54810c7e27056d39afad5111c46",
+      "bytes": 507930,
+      "duration_seconds": 8,
+      "frames": 160,
+      "size": [
+        1920,
+        720
+      ]
+    },
+    {
+      "file": "nidar.mp4",
+      "sha256": "e36572fa9b00d3444da93ee62c118eccdf9977803edb27e8e63c0edfa3f55e11",
+      "bytes": 574308,
+      "duration_seconds": 8,
+      "frames": 160,
+      "size": [
+        1920,
+        720
+      ]
+    }
+  ],
+  "new_training": false,
+  "new_policy_inference": false,
+  "new_simulation": false,
+  "technical_implementation": "Not included in this presentation summary; complete original records are retained internally.",
+  "execution": {
+    "type": "Recorded closed-loop inference of trained BC policies",
+    "video_does_not_show_training": true,
+    "new_inference_for_this_video_edit": false
+  },
+  "video_layout": {
+    "columns": [
+      "RGB",
+      "Depth",
+      "Auxiliary view (none / gray / NIDAR)",
+      "Robot third-person view"
+    ],
+    "page_order": [
+      "RGBD",
+      "RGBD + gray",
+      "RGBD + NIDAR"
+    ],
+    "resolution": [
+      1920,
+      720
+    ]
+  }
+}

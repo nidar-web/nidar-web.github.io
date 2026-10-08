@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
   <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="./static/css/index.css?v=20261008-bc-four-view">
+  <link rel="stylesheet" href="./static/css/index.css?v=20261008-bc-policy-rollout">
   <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -25,7 +25,7 @@
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
   <script src="./static/js/script.js"></script>
-  <script defer src="./static/js/bc-demo.js?v=20261008-bc-four-view"></script>
+  <script defer src="./static/js/bc-demo.js?v=20261008-bc-policy-rollout"></script>
 
 </head>
 
@@ -682,19 +682,19 @@
         <p class="bc-intro">
           We explore NIDAR&rsquo;s potential in imitation learning: a robot uses <strong>RGB, depth and NIDAR-derived visual cues</strong>
           to grasp and lift a target cube among distractors. The NIDAR output is derived from RGB, without an additional NIR sensor.
-          This early simulation demo previews a direction for future applications.
+          Each clip records a trained BC policy predicting actions from successive observations in a closed loop.
         </p>
       </div>
 
-      <div class="bc-flow" aria-label="RGB, depth and NIDAR-derived visual cues support a behavior cloning policy for grasping and lifting.">
+      <div class="bc-flow" aria-label="Visual observations drive a trained behavior cloning policy during closed-loop rollouts.">
         <div class="bc-flow-inputs">
           <span class="bc-input">RGB</span><span class="bc-input">Depth</span>
           <span class="bc-input bc-input--derived">NIDAR output</span>
         </div>
         <span class="bc-flow-arrow" aria-hidden="true">&rarr;</span>
-        <span class="bc-flow-policy">BC policy</span>
+        <span class="bc-flow-policy">Trained BC policy</span>
         <span class="bc-flow-arrow" aria-hidden="true">&rarr;</span>
-        <span class="bc-flow-action">Grasp &amp; lift</span>
+        <span class="bc-flow-action">Closed-loop rollout</span>
       </div>
 
       <div class="bc-playback" role="group" aria-label="Play or pause all three recordings">
@@ -708,9 +708,9 @@
           <div class="bc-card-heading"><h3>RGBD</h3><p>RGB + depth</p></div>
           <div class="bc-video-frame">
             <video class="bc-demo-video" id="bc-rgbd" controls muted loop playsinline preload="metadata"
-                   poster="./static/videos/bc-four-view/rgbd.jpg" aria-label="RGBD, left to right: RGB, depth, no auxiliary image, third-person robot view">
-              <source src="./static/videos/bc-four-view/rgbd.mp4" type="video/mp4">
-              <a href="./static/videos/bc-four-view/rgbd.mp4">Download the RGBD demo</a>.
+                   poster="./static/videos/bc-policy-rollout/rgbd.jpg" aria-label="RGBD, left to right: RGB, depth, no auxiliary image, closed-loop policy rollout in third-person view">
+              <source src="./static/videos/bc-policy-rollout/rgbd.mp4" type="video/mp4">
+              <a href="./static/videos/bc-policy-rollout/rgbd.mp4">Download the RGBD demo</a>.
             </video>
           </div>
           <figcaption class="bc-card-caption"><span class="bc-outcome">Not lifted in this clip</span></figcaption>
@@ -719,9 +719,9 @@
           <div class="bc-card-heading"><h3>RGBD + gray</h3><p>RGBD + grayscale cues</p></div>
           <div class="bc-video-frame">
             <video class="bc-demo-video" id="bc-grayscale" controls muted loop playsinline preload="metadata"
-                   poster="./static/videos/bc-four-view/grayscale.jpg" aria-label="RGBD plus gray, left to right: RGB, depth, grayscale cue view, third-person robot view">
-              <source src="./static/videos/bc-four-view/grayscale.mp4" type="video/mp4">
-              <a href="./static/videos/bc-four-view/grayscale.mp4">Download the grayscale demo</a>.
+                   poster="./static/videos/bc-policy-rollout/grayscale.jpg" aria-label="RGBD plus gray, left to right: RGB, depth, grayscale cue view, closed-loop policy rollout in third-person view">
+              <source src="./static/videos/bc-policy-rollout/grayscale.mp4" type="video/mp4">
+              <a href="./static/videos/bc-policy-rollout/grayscale.mp4">Download the grayscale demo</a>.
             </video>
           </div>
           <figcaption class="bc-card-caption"><span class="bc-outcome">Not lifted in this clip</span></figcaption>
@@ -730,15 +730,15 @@
           <div class="bc-card-heading"><h3>RGBD + NIDAR</h3><p>RGBD + NIDAR output</p></div>
           <div class="bc-video-frame">
             <video class="bc-demo-video" id="bc-nidar" controls muted loop playsinline preload="metadata"
-                   poster="./static/videos/bc-four-view/nidar.jpg" aria-label="RGBD plus NIDAR, left to right: RGB, depth, NIDAR grayscale output view, third-person robot view">
-              <source src="./static/videos/bc-four-view/nidar.mp4" type="video/mp4">
-              <a href="./static/videos/bc-four-view/nidar.mp4">Download the NIDAR demo</a>.
+                   poster="./static/videos/bc-policy-rollout/nidar.jpg" aria-label="RGBD plus NIDAR, left to right: RGB, depth, NIDAR grayscale output view, closed-loop policy rollout in third-person view">
+              <source src="./static/videos/bc-policy-rollout/nidar.mp4" type="video/mp4">
+              <a href="./static/videos/bc-policy-rollout/nidar.mp4">Download the NIDAR demo</a>.
             </video>
           </div>
           <figcaption class="bc-card-caption"><span class="bc-outcome bc-outcome--lifted">Target lifted in this clip</span></figcaption>
         </figure>
       </div>
-      <p class="bc-input-caption"><strong>Left to right in each video:</strong> RGB &middot; Depth &middot; Auxiliary view (none / gray / NIDAR) &middot; Third-person robot view. Use fullscreen for a closer look.</p>
+      <p class="bc-input-caption"><strong>Left to right in each video:</strong> RGB &middot; Depth &middot; Auxiliary view (none / gray / NIDAR) &middot; Third-person robot view. Arrows indicate trained-policy inference during the recorded rollout. Use fullscreen for a closer look.</p>
       <p class="bc-visualization-note"><strong>Output visualization:</strong> the cue maps are averaged into a single grayscale view for display, using the same rule for NIDAR and grayscale. The recorded controllers use the original maps; robot trajectories are unchanged.</p>
 
       <div class="bc-context">
@@ -773,7 +773,7 @@
           <div class="bc-evidence-links">
             <a href="./static/videos/bc/nidar-full.mp4">Full NIDAR recording</a>
             <a href="./static/videos/bc/comparison-full.mp4">Full three-way comparison</a>
-            <a href="./static/videos/bc-four-view/preview.json" download>Preview summary (JSON)</a>
+            <a href="./static/videos/bc-policy-rollout/preview.json" download>Preview summary (JSON)</a>
           </div>
           <p class="bc-version">Forward-looking application preview. Recorded actions and evaluation counts are unchanged; other model versions and lighting conditions are not pooled here.</p>
         </div>
