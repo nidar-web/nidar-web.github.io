@@ -2,6 +2,7 @@
 (function () {
   'use strict';
   var players = Array.from(document.querySelectorAll('.bc-demo-video'));
+  var leader = document.getElementById('bc-nidar') || players[0];
   var playButton = document.getElementById('bc-play-all');
   var pauseButton = document.getElementById('bc-pause-all');
   var status = document.getElementById('bc-playback-status');
@@ -15,12 +16,20 @@
   }
 
   function syncToLeader() {
-    var time = players[0].currentTime;
-    players.slice(1).forEach(function (player) {
+    var time = leader.currentTime;
+    players.forEach(function (player) {
+      if (player === leader) return;
       if (!player.seeking && Math.abs(player.currentTime - time) > 0.10) {
         player.currentTime = time;
       }
     });
+  }
+
+  function rewind(player) {
+    if (player.currentTime === 0 && !player.seeking) return Promise.resolve();
+    var ready = waitFor(player, 'seeked', function () { return false; });
+    player.currentTime = 0;
+    return ready;
   }
 
   function waitFor(player, event, ready) {
@@ -52,12 +61,15 @@
         return waitFor(player, 'canplay', function () { return player.readyState >= 3; });
       }));
       if (current !== request) return;
-      await Promise.all(players.map(function (player) {
-        if (player.currentTime === 0 && !player.seeking) return Promise.resolve();
-        var ready = waitFor(player, 'seeked', function () { return false; });
-        player.currentTime = 0;
-        return ready;
+      await Promise.all(players.map(rewind));
+      if (current !== request) return;
+      // Prime each decoder on the initial still frame before starting the group.
+      await Promise.all(players.map(async function (player) {
+        await player.play();
+        if (current === request) player.pause();
       }));
+      if (current !== request) return;
+      await Promise.all(players.map(rewind));
       if (current !== request) return;
       await Promise.all(players.map(function (player) { return player.play(); }));
       if (current === request) {

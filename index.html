@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
   <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="./static/css/index.css?v=20261008-bc-gray-preview">
+  <link rel="stylesheet" href="./static/css/index.css?v=20261008-bc-four-view">
   <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -25,7 +25,7 @@
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
   <script src="./static/js/script.js"></script>
-  <script defer src="./static/js/bc-demo.js?v=20261008-bc-gray-preview"></script>
+  <script defer src="./static/js/bc-demo.js?v=20261008-bc-four-view"></script>
 
 </head>
 
@@ -705,41 +705,41 @@
       </div>
 
       <div class="bc-demo-grid">
-        <figure class="bc-demo-card bc-demo-card--nidar">
-          <div class="bc-card-heading"><h3>NIDAR</h3><p>RGBD + NIDAR output</p></div>
-          <div class="bc-video-frame">
-            <video class="bc-demo-video" id="bc-nidar" controls muted loop playsinline preload="metadata"
-                   poster="./static/videos/bc-preview-gray/nidar.jpg" aria-label="NIDAR: RGB, depth and a joint output visualization on the left; robot execution on the right">
-              <source src="./static/videos/bc-preview-gray/nidar.mp4" type="video/mp4">
-              <a href="./static/videos/bc-preview-gray/nidar.mp4">Download the NIDAR demo</a>.
-            </video>
-          </div>
-          <figcaption class="bc-card-caption"><span class="bc-outcome bc-outcome--lifted">Target lifted in this clip</span><a href="./static/videos/bc-preview-gray/nidar.mp4" download aria-label="Download NIDAR demo">Download <span aria-hidden="true">&darr;</span></a></figcaption>
-        </figure>
         <figure class="bc-demo-card">
           <div class="bc-card-heading"><h3>RGBD</h3><p>RGB + depth</p></div>
           <div class="bc-video-frame">
             <video class="bc-demo-video" id="bc-rgbd" controls muted loop playsinline preload="metadata"
-                   poster="./static/videos/bc-preview-gray/rgbd.jpg" aria-label="RGBD: RGB and depth on the left; robot execution on the right">
-              <source src="./static/videos/bc-preview-gray/rgbd.mp4" type="video/mp4">
-              <a href="./static/videos/bc-preview-gray/rgbd.mp4">Download the RGBD demo</a>.
+                   poster="./static/videos/bc-four-view/rgbd.jpg" aria-label="RGBD, left to right: RGB, depth, no auxiliary image, third-person robot view">
+              <source src="./static/videos/bc-four-view/rgbd.mp4" type="video/mp4">
+              <a href="./static/videos/bc-four-view/rgbd.mp4">Download the RGBD demo</a>.
             </video>
           </div>
-          <figcaption class="bc-card-caption"><span class="bc-outcome">Not lifted in this clip</span><a href="./static/videos/bc-preview-gray/rgbd.mp4" download aria-label="Download RGBD demo">Download <span aria-hidden="true">&darr;</span></a></figcaption>
+          <figcaption class="bc-card-caption"><span class="bc-outcome">Not lifted in this clip</span><a href="./static/videos/bc-four-view/rgbd.mp4" download aria-label="Download RGBD demo">Download <span aria-hidden="true">&darr;</span></a></figcaption>
         </figure>
         <figure class="bc-demo-card">
-          <div class="bc-card-heading"><h3>RGBD + grayscale</h3><p>RGBD + grayscale cues</p></div>
+          <div class="bc-card-heading"><h3>RGBD + gray</h3><p>RGBD + grayscale cues</p></div>
           <div class="bc-video-frame">
             <video class="bc-demo-video" id="bc-grayscale" controls muted loop playsinline preload="metadata"
-                   poster="./static/videos/bc-preview-gray/grayscale.jpg" aria-label="RGBD plus grayscale: RGB, depth and a joint grayscale cue visualization on the left; robot execution on the right">
-              <source src="./static/videos/bc-preview-gray/grayscale.mp4" type="video/mp4">
-              <a href="./static/videos/bc-preview-gray/grayscale.mp4">Download the grayscale demo</a>.
+                   poster="./static/videos/bc-four-view/grayscale.jpg" aria-label="RGBD plus gray, left to right: RGB, depth, grayscale cue view, third-person robot view">
+              <source src="./static/videos/bc-four-view/grayscale.mp4" type="video/mp4">
+              <a href="./static/videos/bc-four-view/grayscale.mp4">Download the grayscale demo</a>.
             </video>
           </div>
-          <figcaption class="bc-card-caption"><span class="bc-outcome">Not lifted in this clip</span><a href="./static/videos/bc-preview-gray/grayscale.mp4" download aria-label="Download RGBD plus grayscale demo">Download <span aria-hidden="true">&darr;</span></a></figcaption>
+          <figcaption class="bc-card-caption"><span class="bc-outcome">Not lifted in this clip</span><a href="./static/videos/bc-four-view/grayscale.mp4" download aria-label="Download RGBD plus grayscale demo">Download <span aria-hidden="true">&darr;</span></a></figcaption>
+        </figure>
+        <figure class="bc-demo-card bc-demo-card--nidar">
+          <div class="bc-card-heading"><h3>RGBD + NIDAR</h3><p>RGBD + NIDAR output</p></div>
+          <div class="bc-video-frame">
+            <video class="bc-demo-video" id="bc-nidar" controls muted loop playsinline preload="metadata"
+                   poster="./static/videos/bc-four-view/nidar.jpg" aria-label="RGBD plus NIDAR, left to right: RGB, depth, NIDAR grayscale output view, third-person robot view">
+              <source src="./static/videos/bc-four-view/nidar.mp4" type="video/mp4">
+              <a href="./static/videos/bc-four-view/nidar.mp4">Download the NIDAR demo</a>.
+            </video>
+          </div>
+          <figcaption class="bc-card-caption"><span class="bc-outcome bc-outcome--lifted">Target lifted in this clip</span><a href="./static/videos/bc-four-view/nidar.mp4" download aria-label="Download NIDAR demo">Download <span aria-hidden="true">&darr;</span></a></figcaption>
         </figure>
       </div>
-      <p class="bc-input-caption"><strong>In each video:</strong> RGB, depth and the output view on the left; robot execution on the right. Use fullscreen for a closer look.</p>
+      <p class="bc-input-caption"><strong>Left to right in each video:</strong> RGB &middot; Depth &middot; Auxiliary view (none / gray / NIDAR) &middot; Third-person robot view. Use fullscreen for a closer look.</p>
       <p class="bc-visualization-note"><strong>Output visualization:</strong> the cue maps are averaged into a single grayscale view for display, using the same rule for NIDAR and grayscale. The recorded controllers use the original maps; robot trajectories are unchanged.</p>
 
       <div class="bc-context">
@@ -758,9 +758,9 @@
               <caption>Normal-light development set (D0); same initial states across all three displayed groups.</caption>
               <thead><tr><th scope="col">Controller inputs</th><th scope="col">Successful lifts</th><th scope="col">Success rate</th></tr></thead>
               <tbody>
-                <tr class="bc-result-highlight"><th scope="row">RGBD + NIDAR</th><td>58 / 60</td><td>96.7%</td></tr>
                 <tr><th scope="row">RGBD</th><td>56 / 60</td><td>93.3%</td></tr>
-                <tr><th scope="row">RGBD + grayscale</th><td>56 / 60</td><td>93.3%</td></tr>
+                <tr><th scope="row">RGBD + gray</th><td>56 / 60</td><td>93.3%</td></tr>
+                <tr class="bc-result-highlight"><th scope="row">RGBD + NIDAR</th><td>58 / 60</td><td>96.7%</td></tr>
               </tbody>
             </table>
           </div>
@@ -774,7 +774,7 @@
           <div class="bc-evidence-links">
             <a href="./static/videos/bc/nidar-full.mp4">Full NIDAR recording</a>
             <a href="./static/videos/bc/comparison-full.mp4">Full three-way comparison</a>
-            <a href="./static/videos/bc-preview-gray/preview.json" download>Preview summary (JSON)</a>
+            <a href="./static/videos/bc-four-view/preview.json" download>Preview summary (JSON)</a>
           </div>
           <p class="bc-version">Forward-looking application preview. Recorded actions and evaluation counts are unchanged; other model versions and lighting conditions are not pooled here.</p>
         </div>
