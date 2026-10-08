@@ -539,15 +539,14 @@ body {
   margin-bottom: 0.75rem;
 }
 
-/* Isaac Sim is the main heading; the SLAM task stays on a secondary line. */
-.isaac-slam-heading { display: flex; flex-direction: column; align-items: center; gap: 0.6rem; margin-bottom: 1rem; scroll-margin-top: 2rem; }
-.isaac-slam-heading .isaac-platform-title { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 0.7rem; margin: 0; color: #0077d8; font-size: 2.25rem; font-weight: 800; line-height: 1.2; }
-.isaac-platform-logo { display: block; flex: none; width: auto; height: 56px; }
-.isaac-slam-subtitle { margin: 0; color: #547083; font-size: 1.25rem; font-weight: 600; line-height: 1.4; }
+/* Preserve the original heading sentence on one line and emphasize the platform. */
+.isaac-slam-heading { margin-bottom: 1rem; scroll-margin-top: 2rem; }
+.isaac-slam-heading .isaac-inline-title { display: flex; align-items: center; justify-content: center; flex-wrap: nowrap; gap: 0.22em; margin: 0; color: #006496; font-size: clamp(1rem, 2.6vw, 1.75rem); font-weight: 600; line-height: 1.3; white-space: nowrap; }
+.isaac-slam-heading .isaac-connector { font-size: 0.8em; font-weight: 500; }
+.isaac-inline-logo { display: block; flex: none; width: auto; height: 1.1em; }
+.isaac-slam-heading .isaac-platform-name { color: #0077d8; font-weight: 800; }
 @media (max-width: 768px) {
-  .isaac-slam-heading .isaac-platform-title { font-size: 1.75rem; gap: 0.55rem; }
-  .isaac-platform-logo { height: 44px; }
-  .isaac-slam-subtitle { font-size: 1.125rem; }
+  .isaac-slam-heading .isaac-inline-title { font-size: clamp(0.56rem, 3vw, 0.95rem); }
 }
 
 /* Conference header: logo + short title (e.g., IROS 2026) */
