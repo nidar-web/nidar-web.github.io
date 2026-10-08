@@ -7,6 +7,21 @@
   var status = document.getElementById('bc-playback-status');
   if (!players.length || !playButton || !pauseButton || !status) return;
   var request = 0;
+  var syncTimer = null;
+
+  function stopSync() {
+    clearInterval(syncTimer);
+    syncTimer = null;
+  }
+
+  function syncToLeader() {
+    var time = players[0].currentTime;
+    players.slice(1).forEach(function (player) {
+      if (!player.seeking && Math.abs(player.currentTime - time) > 0.10) {
+        player.currentTime = time;
+      }
+    });
+  }
 
   function waitFor(player, event, ready) {
     if (ready()) return Promise.resolve();
@@ -28,6 +43,7 @@
 
   playButton.addEventListener('click', async function () {
     var current = ++request;
+    stopSync();
     playButton.disabled = true;
     status.textContent = 'Loading comparison…';
     players.forEach(function (player) { player.pause(); player.preload = 'auto'; });
@@ -44,9 +60,20 @@
       }));
       if (current !== request) return;
       await Promise.all(players.map(function (player) { return player.play(); }));
-      if (current === request) status.textContent = 'Playing all three recordings from the same start.';
+      if (current === request) {
+        syncToLeader();
+        syncTimer = setInterval(function () {
+          if (current !== request || players.some(function (player) { return player.paused; })) {
+            stopSync();
+            return;
+          }
+          syncToLeader();
+        }, 100);
+        status.textContent = 'Playing all three recordings from the same start.';
+      }
     } catch (_) {
       if (current === request) {
+        stopSync();
         players.forEach(function (player) { player.pause(); });
         status.textContent = 'Unable to start the comparison. Please retry or use the individual video controls.';
       }
@@ -57,6 +84,7 @@
 
   pauseButton.addEventListener('click', function () {
     request++;
+    stopSync();
     players.forEach(function (player) { player.pause(); });
     playButton.disabled = false;
     status.textContent = 'All recordings paused. Individual video controls are also available.';
