@@ -48,6 +48,8 @@
 .bc-outcome--lifted { color: #176652; font-weight: 600; }
 .bc-input-caption { margin: 1rem 0 1.5rem; text-align: center; color: #5b6d7d; font-size: 0.85rem; line-height: 1.7; }
 .bc-input-caption strong { color: #344c60; }
+.bc-visualization-note { max-width: 980px; margin: -0.6rem auto 1.5rem; padding: 0.8rem 1rem; border: 1px solid #dce7ef; border-radius: 8px; background: #f3f7fa; color: #687c8d; font-size: 0.78rem; line-height: 1.7; }
+.bc-visualization-note strong { color: #425d71; }
 .bc-play-button:focus-visible, .bc-evidence summary:focus-visible, .bc-jump:focus-visible { outline: 3px solid #46a2cd; outline-offset: 4px; }
 .bc-context { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; padding: 1.6rem 0; margin-bottom: 0.5rem; border-top: 1px solid #dce7ef; }
 .bc-context-label { display: block; color: #8294a3; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.45rem; }
