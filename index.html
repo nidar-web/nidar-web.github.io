@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
   <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="./static/css/index.css?v=20261008-bc-rollout-light">
+  <link rel="stylesheet" href="./static/css/index.css?v=20261008-bc-scene">
   <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -684,6 +684,35 @@
           to grasp and lift a target cube among distractors. The NIDAR output is derived from RGB, without an additional NIR sensor.
           Each clip records a trained BC policy predicting actions from successive observations in a closed loop.
         </p>
+      </div>
+
+      <div class="bc-scene" aria-labelledby="bc-scene-title">
+        <figure class="bc-scene-overview">
+          <div class="bc-scene-image">
+            <img src="./static/images/bc-scene/initial-overview.png" width="256" height="256"
+                 alt="Initial scene: a red wood-grain target in the center, matte red upper left, glossy red upper right, blue lower left and green lower right.">
+            <span class="bc-scene-marker bc-scene-marker--target" style="left:53.48987755%;top:48.94803126%" aria-hidden="true">1</span>
+            <span class="bc-scene-marker" style="left:35.93331239%;top:33.96621407%" aria-hidden="true">2</span>
+            <span class="bc-scene-marker" style="left:70.12262278%;top:33.96621407%" aria-hidden="true">3</span>
+            <span class="bc-scene-marker" style="left:31.29262600%;top:68.94203466%" aria-hidden="true">4</span>
+            <span class="bc-scene-marker" style="left:76.92001416%;top:68.94203466%" aria-hidden="true">5</span>
+          </div>
+          <figcaption>Scene overview &middot; Initial state</figcaption>
+        </figure>
+        <div class="bc-scene-description">
+          <h3 id="bc-scene-title">Five cubes, one target</h3>
+          <p>Three red cubes, one blue cube and one green cube share the tabletop.
+            The task is to grasp and lift the <strong>central red cube with a wood-grain texture</strong>.</p>
+          <ol class="bc-scene-legend" aria-label="Cube colors, materials and task roles">
+            <li class="bc-scene-target"><span class="bc-scene-number bc-scene-number--red">1</span><span>Red &middot; wood-grain texture</span><span class="bc-scene-role">Target</span></li>
+            <li><span class="bc-scene-number bc-scene-number--red">2</span><span>Red &middot; matte finish</span><span class="bc-scene-role">Distractor</span></li>
+            <li><span class="bc-scene-number bc-scene-number--red">3</span><span>Red &middot; glossy finish</span><span class="bc-scene-role">Distractor</span></li>
+            <li><span class="bc-scene-number bc-scene-number--blue">4</span><span>Blue</span><span class="bc-scene-role">Distractor</span></li>
+            <li><span class="bc-scene-number bc-scene-number--green">5</span><span>Green</span><span class="bc-scene-role">Distractor</span></li>
+          </ol>
+          <p class="bc-scene-note">The three red cubes have similar colors but different textures and surface finishes.
+            Only lifting the target counts as success.</p>
+        </div>
       </div>
 
       <div class="bc-playback" role="group" aria-label="Play or pause all three recordings">
