@@ -1,34 +1,66 @@
-/* Self-contained controls; the application demo does not depend on jQuery. */
+/* Shared playback for the three matched recordings, independent of jQuery. */
 (function () {
   'use strict';
-  var player = document.getElementById('bc-player');
-  var caption = document.getElementById('bc-selection');
-  var download = document.getElementById('bc-download');
-  var choices = document.querySelectorAll('[data-bc-file]');
-  if (!player || !caption || !download) return;
+  var players = Array.from(document.querySelectorAll('.bc-demo-video'));
+  var playButton = document.getElementById('bc-play-all');
+  var pauseButton = document.getElementById('bc-pause-all');
+  var status = document.getElementById('bc-playback-status');
+  if (!players.length || !playButton || !pauseButton || !status) return;
+  var request = 0;
 
-  choices.forEach(function (button) {
-    button.addEventListener('click', function () {
-      if (button.getAttribute('aria-pressed') === 'true') return;
-      var resume = !player.paused && !player.ended;
-      var name = button.getAttribute('data-bc-file');
-      var path = './static/videos/bc/' + name;
-      player.pause();
-      player.poster = path + '.jpg';
-      player.src = path + '.mp4';
-      player.setAttribute('aria-label', button.getAttribute('data-bc-label') + ': all controller image inputs and synchronized robot execution');
-      caption.textContent = button.getAttribute('data-bc-caption');
-      download.href = path + '.mp4';
-      choices.forEach(function (choice) {
-        var active = choice === button;
-        choice.classList.toggle('is-active', active);
-        choice.setAttribute('aria-pressed', String(active));
-      });
-      player.load();
-      if (resume) {
-        var play = player.play();
-        if (play && typeof play.catch === 'function') play.catch(function () {});
+  function waitFor(player, event, ready) {
+    if (ready()) return Promise.resolve();
+    return new Promise(function (resolve, reject) {
+      var timer = setTimeout(function () { finish(new Error('Media timeout')); }, 15000);
+      function finish(error) {
+        clearTimeout(timer);
+        player.removeEventListener(event, success);
+        player.removeEventListener('error', failure);
+        if (error) reject(error); else resolve();
       }
+      function success() { finish(); }
+      function failure() { finish(new Error('Media unavailable')); }
+      player.addEventListener(event, success, { once: true });
+      player.addEventListener('error', failure, { once: true });
+      if (player.error) failure();
     });
+  }
+
+  playButton.addEventListener('click', async function () {
+    var current = ++request;
+    playButton.disabled = true;
+    status.textContent = 'Loading comparison…';
+    players.forEach(function (player) { player.pause(); player.preload = 'auto'; });
+    try {
+      await Promise.all(players.map(function (player) {
+        return waitFor(player, 'canplay', function () { return player.readyState >= 3; });
+      }));
+      if (current !== request) return;
+      await Promise.all(players.map(function (player) {
+        if (player.currentTime === 0 && !player.seeking) return Promise.resolve();
+        var ready = waitFor(player, 'seeked', function () { return false; });
+        player.currentTime = 0;
+        return ready;
+      }));
+      if (current !== request) return;
+      await Promise.all(players.map(function (player) { return player.play(); }));
+      if (current === request) status.textContent = 'Playing all three recordings from the same start.';
+    } catch (_) {
+      if (current === request) {
+        players.forEach(function (player) { player.pause(); });
+        status.textContent = 'Unable to start the comparison. Please retry or use the individual video controls.';
+      }
+    } finally {
+      if (current === request) playButton.disabled = false;
+    }
   });
+
+  pauseButton.addEventListener('click', function () {
+    request++;
+    players.forEach(function (player) { player.pause(); });
+    playButton.disabled = false;
+    status.textContent = 'All recordings paused. Individual video controls are also available.';
+  });
+  playButton.disabled = false;
+  pauseButton.disabled = false;
 })();
