@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
   <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="./static/css/index.css?v=20261008-buttons">
+  <link rel="stylesheet" href="./static/css/index.css?v=20261008-bc">
   <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -25,6 +25,7 @@
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
   <script src="./static/js/script.js"></script>
+  <script defer src="./static/js/bc-demo.js?v=20261008-bc"></script>
 
 </head>
 
@@ -147,6 +148,10 @@
                 </a>
               </span>
             </div>
+            <a class="bc-jump" href="#behavior-cloning">
+              <span class="bc-jump-dot" aria-hidden="true"></span>
+              Watch the behavior cloning demo <span aria-hidden="true">&darr;</span>
+            </a>
 
             </div>
           </div>
@@ -668,6 +673,100 @@
       </div>
     </div>
 
+  </section>
+
+  <section class="section bc-section" id="behavior-cloning" aria-labelledby="bc-title">
+    <div class="container bc-container">
+      <div class="bc-heading">
+        <p class="bc-eyebrow">Application preview <span aria-hidden="true">/</span> Simulation</p>
+        <h2 class="title is-3" id="bc-title">NIDAR for Behavior Cloning</h2>
+        <p class="bc-intro">
+          Beyond intensity reconstruction, we explore NIDAR&rsquo;s image front end as a visual prior for imitation learning.
+          A behavior cloning policy uses <strong>RGB, depth, pseudo-NIR and reflectance-like R</strong> to grasp and lift a target cube among distractors.
+          Both learned cues come from RGB; no additional NIR sensor is needed.
+        </p>
+      </div>
+
+      <div class="bc-flow" aria-label="The NIDAR application uses RGB, depth, and RGB-derived pseudo-NIR and R to condition a behavior cloning policy for grasping and lifting.">
+        <div class="bc-flow-inputs">
+          <span class="bc-input">RGB</span><span class="bc-input">Depth</span>
+          <span class="bc-input bc-input--derived">pseudo-NIR</span><span class="bc-input bc-input--derived">R</span>
+        </div>
+        <span class="bc-flow-arrow" aria-hidden="true">&rarr;</span>
+        <span class="bc-flow-policy">BC-RNN + FiLM + R residual</span>
+        <span class="bc-flow-arrow" aria-hidden="true">&rarr;</span>
+        <span class="bc-flow-action">Grasp &amp; lift</span>
+      </div>
+
+      <figure class="bc-showcase">
+        <div class="bc-video-frame">
+          <video id="bc-player" controls muted loop playsinline preload="metadata"
+                 poster="./static/videos/bc/nidar.jpg" aria-label="NIDAR behavior cloning: all controller image inputs on the left and robot execution on the right">
+            <source src="./static/videos/bc/nidar.mp4" type="video/mp4">
+            Your browser does not support embedded video. <a href="./static/videos/bc/nidar.mp4">Download the demo</a>.
+          </video>
+        </div>
+        <figcaption class="bc-video-caption">
+          <span><strong>Left:</strong> all controller image inputs, including depth. <strong>Right:</strong> robot execution.</span>
+          <a id="bc-download" href="./static/videos/bc/nidar.mp4" download>Download video <span aria-hidden="true">&darr;</span></a>
+        </figcaption>
+      </figure>
+
+      <div class="bc-controls" role="group" aria-label="Choose a recording from the same initial state">
+        <button type="button" class="bc-choice is-active" aria-pressed="true" data-bc-file="nidar" data-bc-label="NIDAR"
+                data-bc-caption="RGB + depth + pseudo-NIR + low-frequency R. The target is grasped and lifted.">NIDAR</button>
+        <button type="button" class="bc-choice" aria-pressed="false" data-bc-file="rgbd" data-bc-label="RGBD"
+                data-bc-caption="RGB + depth; auxiliary input slots are zero. The target is not lifted in this window.">RGBD</button>
+        <button type="button" class="bc-choice" aria-pressed="false" data-bc-file="grayscale" data-bc-label="RGBD plus grayscale"
+                data-bc-caption="RGB + depth + grayscale + low-frequency grayscale. The target is not lifted in this window.">RGBD + grayscale</button>
+        <button type="button" class="bc-choice" aria-pressed="false" data-bc-file="pseudo-nir" data-bc-label="Fixed pseudo-NIR policy"
+                data-bc-caption="RGB + depth + pseudo-NIR, using the original fixed policy. This policy also grasps and lifts the target.">Fixed pseudo-NIR</button>
+        <button type="button" class="bc-choice bc-choice--compare" aria-pressed="false" data-bc-file="comparison" data-bc-label="Synchronized RGBD, grayscale and NIDAR comparison"
+                data-bc-caption="RGBD, RGBD + grayscale and NIDAR shown at the same simulation steps, with the same initial state and lighting.">Compare three <span aria-hidden="true">&nearr;</span></button>
+      </div>
+      <p class="bc-selection" id="bc-selection" aria-live="polite">RGB + depth + pseudo-NIR + low-frequency R. The target is grasped and lifted.</p>
+
+      <div class="bc-context">
+        <div><span class="bc-context-label">Task</span><strong>Pick the central red cube</strong><p>Redwood-textured target; matte-red, glossy-red, blue and green distractors.</p></div>
+        <div><span class="bc-context-label">Matched recordings</span><strong>Same start, same lighting</strong><p>Normal light &middot; demo_146 &middot; training seed 2. All views use the same time window.</p></div>
+        <div><span class="bc-context-label">Presentation</span><strong>8-second demo</strong><p>Simulation 0&ndash;5 s at original speed, plus initial and final frame holds.</p></div>
+      </div>
+
+      <details class="bc-evidence">
+        <summary><span>Experiment results &amp; setup</span><span class="bc-details-plus" aria-hidden="true">+</span></summary>
+        <div class="bc-evidence-body">
+          <p><strong>Frozen development check:</strong> 20 initial states &times; 3 training seeds, under normal lighting.
+            The full application achieves 58/60 successful lifts, compared with RGBD&rsquo;s 56/60, and matches the fixed pseudo-NIR policy.</p>
+          <div class="bc-table-wrap">
+            <table class="bc-results">
+              <caption>Normal-light development set (D0); same initial states across all four groups.</caption>
+              <thead><tr><th scope="col">Controller inputs</th><th scope="col">Successful lifts</th><th scope="col">Success rate</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">RGBD</th><td>56 / 60</td><td>93.3%</td></tr>
+                <tr><th scope="row">RGBD + grayscale</th><td>56 / 60</td><td>93.3%</td></tr>
+                <tr><th scope="row">RGBD + pseudo-NIR (fixed)</th><td>58 / 60</td><td>96.7%</td></tr>
+                <tr class="bc-result-highlight"><th scope="row">RGBD + pseudo-NIR + R (NIDAR)</th><td>58 / 60</td><td>96.7%</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>This is an exploratory development result. It supports application potential, without establishing an independent success-rate gain from R.
+            On a separate set of new initial states (D1), fixed pseudo-NIR scores 55/60 and NIDAR scores 53/60; consistent generalization remains open.</p>
+          <dl class="bc-protocol">
+            <div><dt>Policy &amp; inputs</dt><dd>BC-RNN with FiLM, using an 8-frame image history. Pseudo-NIR is predicted from RGB; intrinsic decomposition produces R, which is reduced to an 8 &times; 8 low-frequency cue and added through a bounded residual to the fixed pseudo-NIR policy. No object IDs, material labels, object positions or proprioceptive inputs are supplied.</dd></div>
+            <div><dt>Application scope</dt><dd>This application reuses NIDAR&rsquo;s image front end. The BC path does not use point-cloud projection, geometry-aware intensity modulation or quantile remapping. The scene has no measured NIR or LiDAR intensity ground truth; the cubes also differ slightly in size, mass and orientation.</dd></div>
+            <div><dt>Success &amp; selection</dt><dd>Original Lift criterion: target center z &gt; table z + 0.04 m, within 400 steps at 20 Hz, stopping at first success. This is a threshold above the table, not a 4 cm lift from the initial cube center. The displayed case was selected after observing outcomes and adds no evaluation samples.</dd></div>
+            <div><dt>Full motion</dt><dd>The short clip shows a successful grasp and lift, not an 8-second continuous hold. In the 20-second continuations, both NIDAR and fixed pseudo-NIR lose the Lift criterion at 14.2 s and finish without it. RGBD and grayscale do not meet the criterion in the full rollout. Original full recordings, with Chinese annotations, remain available below.</dd></div>
+          </dl>
+          <div class="bc-evidence-links">
+            <a href="./static/videos/bc/nidar-full.mp4">Full NIDAR recording</a>
+            <a href="./static/videos/bc/pseudo-nir-full.mp4">Full pseudo-NIR recording</a>
+            <a href="./static/videos/bc/comparison-full.mp4">Full three-way comparison</a>
+            <a href="./static/videos/bc/evaluation.json" download>Results &amp; provenance (JSON)</a>
+          </div>
+          <p class="bc-version">Policy version: NIDAR-BC-D0-frozen-NIR-R-residual-20260930. Results from other model versions or lighting conditions are not pooled here.</p>
+        </div>
+      </details>
+    </div>
   </section>
 
 <!-- 
