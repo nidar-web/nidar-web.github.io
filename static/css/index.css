@@ -75,7 +75,7 @@
 .bc-context-label { display: block; color: #8294a3; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.45rem; }
 .bc-context strong { display: block; color: #29475e; font-size: 0.95rem; margin-bottom: 0.35rem; }
 .bc-context p { color: #687c8d; font-size: 0.85rem; line-height: 1.7; }
-.bc-evidence { border: 1px solid #dce7ef; border-radius: 10px; background: #fff; }
+.bc-evidence { margin-top: 1.5rem; border: 1px solid #dce7ef; border-radius: 10px; background: #fff; }
 .bc-evidence summary { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1.2rem 1.5rem; cursor: pointer; list-style: none; font-size: 0.95rem; font-weight: 600; color: #31516a; }
 .bc-evidence summary::-webkit-details-marker { display: none; }
 .bc-details-plus { color: #006496; font-size: 1.4rem; font-weight: 400; line-height: 1; }
