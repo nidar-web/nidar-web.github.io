@@ -559,6 +559,20 @@ body {
   .slam-demo-grid { grid-template-columns: minmax(0, 1fr); }
 }
 
+/* UE5 integration: native geometry and NIDAR intensity-colored point clouds. */
+.ue5-section { scroll-margin-top: 2rem; }
+.ue5-heading .ue5-inline-title { display: flex; align-items: center; justify-content: center; flex-wrap: nowrap; gap: 0.22em; margin: 0; color: #006496; font-size: clamp(1rem, 2.6vw, 1.75rem); font-weight: 400; line-height: 1.3; white-space: nowrap; }
+.ue5-heading .ue5-platform-name { color: #0077d8; font-weight: 800; }
+.ue5-intro { color: #4a4a4a; font-size: 1rem; line-height: 1.7; margin-top: 1rem; }
+.ue5-demo-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+.ue5-demo { min-width: 0; margin: 0; }
+.ue5-media { aspect-ratio: 799 / 378; overflow: hidden; border: 1px solid #e3e9ef; border-radius: 10px; background: #fff; }
+.ue5-media video { display: block; width: 100%; height: 100%; object-fit: contain; }
+.ue5-demo figcaption { margin-top: 0.65rem; color: #4a4a4a; font-size: 0.95rem; line-height: 1.6; text-align: center; }
+@media (max-width: 768px) {
+  .ue5-demo-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
 /* Match the Isaac Sim heading: regular task text, bold dataset name and trailing logo. */
 .nuscenes-comparison-heading { margin-bottom: 1rem; scroll-margin-top: 2rem; }
 .nuscenes-comparison-heading .nuscenes-inline-title { display: flex; align-items: center; justify-content: center; flex-wrap: nowrap; gap: 0.22em; margin: 0; color: #006496; font-size: clamp(1rem, 2.6vw, 1.75rem); font-weight: 400; line-height: 1.3; white-space: nowrap; }

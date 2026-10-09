@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
   <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="./static/css/index.css?v=20261009-slam-demos">
+  <link rel="stylesheet" href="./static/css/index.css?v=20261009-ue5-demos">
   <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -659,6 +659,46 @@
       </div>
     </div>
 
+  </section>
+
+  <section class="section ue5-section" id="unreal-engine-5" aria-labelledby="ue5-title">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <div class="ue5-heading">
+            <h2 class="title ue5-inline-title" id="ue5-title">
+              <span>NIDAR in</span>
+              <span class="ue5-platform-name">Unreal Engine 5</span>
+            </h2>
+          </div>
+          <p class="ue5-intro">We integrate NIDAR with UE5 to add intensity information to simulated point clouds.</p>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="ue5-demo-grid">
+        <figure class="ue5-demo">
+          <div class="ue5-media">
+            <video id="ue5-native" autoplay controls muted loop playsinline preload="metadata"
+                   poster="./static/videos/ue5/ue5-native.jpg" aria-label="UE5 native point cloud without intensity information">
+              <source src="./static/videos/ue5/ue5-native.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <figcaption><strong>UE5 native point cloud.</strong> Geometry-only output without intensity.</figcaption>
+        </figure>
+        <figure class="ue5-demo">
+          <div class="ue5-media">
+            <video id="ue5-nidar" autoplay controls muted loop playsinline preload="metadata"
+                   poster="./static/videos/ue5/nidar-intensity.jpg" aria-label="UE5 point cloud colored by NIDAR-generated intensity">
+              <source src="./static/videos/ue5/nidar-intensity.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <figcaption><strong>UE5 + NIDAR.</strong> Point cloud colored by NIDAR-generated intensity.</figcaption>
+        </figure>
+      </div>
+    </div>
   </section>
 
   <section class="section bc-section" id="behavior-cloning" aria-labelledby="bc-title">
