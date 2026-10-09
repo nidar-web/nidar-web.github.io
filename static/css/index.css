@@ -166,7 +166,12 @@ body {
 .site-nav-toggle:hover { background: #edf5fa; }
 .site-nav-toggle svg { display: block; }
 
-.institution-logos { display: flex; align-items: center; justify-content: center; gap: clamp(12px, 3vw, 42px); max-width: 640px; margin: 1.5rem auto 0.5rem; }
+#top .publication-authors { line-height: 1.65; }
+#top .publication-footnotes { margin-top: 0.5rem; color: #6e7985; }
+#top .publication-affiliations.is-size-5 { max-width: 820px; margin: 1.15rem auto 0; color: #66727f; font-size: 0.9rem !important; font-weight: 400; line-height: 1.85; }
+#top .publication-affiliations .author-block { margin: 0.1rem 0.5rem; }
+#top .publication-links { margin-top: 2rem; }
+.institution-logos { display: flex; align-items: center; justify-content: center; gap: clamp(12px, 3vw, 42px); max-width: 640px; margin: 1.75rem auto 0; }
 .institution-logo { display: block; flex: 0 1 auto; min-width: 0; max-width: 100%; height: auto; object-fit: contain; }
 .institution-logo--seal { width: 88px; }
 .institution-logo--center { width: 272px; }
@@ -187,7 +192,7 @@ body {
   #top .publication-title { font-size: clamp(1.65rem, 6.8vw, 2rem); line-height: 1.2; word-break: normal; }
   #top .conference-logo { height: 88px; }
   #top .publication-authors.is-size-5 { font-size: 1rem !important; line-height: 1.65; }
-  #top .publication-affiliations.is-size-5 { font-size: 0.875rem !important; line-height: 1.6; }
+  #top .publication-affiliations.is-size-5 { font-size: 0.8125rem !important; line-height: 1.85; }
   #top .publication-links { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 0.5rem; padding-left: 0; padding-right: 0; }
   #top .publication-links .publication-link { min-height: 42px; margin: 0; padding: 0 0.75rem; font-size: 0.875rem; }
   .institution-logo--seal { width: clamp(48px, 14vw, 64px); }
