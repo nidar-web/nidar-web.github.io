@@ -549,6 +549,16 @@ body {
   .isaac-slam-heading .isaac-inline-title { font-size: clamp(0.56rem, 3vw, 0.95rem); }
 }
 
+/* Match the Isaac Sim heading: regular task text, bold dataset name and trailing logo. */
+.nuscenes-comparison-heading { margin-bottom: 1rem; scroll-margin-top: 2rem; }
+.nuscenes-comparison-heading .nuscenes-inline-title { display: flex; align-items: center; justify-content: center; flex-wrap: nowrap; gap: 0.22em; margin: 0; color: #006496; font-size: clamp(1rem, 2.6vw, 1.75rem); font-weight: 400; line-height: 1.3; white-space: nowrap; }
+.nuscenes-comparison-heading .nuscenes-connector { font-size: 0.8em; font-weight: 400; }
+.nuscenes-inline-logo { display: block; flex: none; width: auto; height: 1.1em; }
+.nuscenes-comparison-heading .nuscenes-platform-name { color: #0077d8; font-weight: 800; }
+@media (max-width: 768px) {
+  .nuscenes-comparison-heading .nuscenes-inline-title { font-size: clamp(0.56rem, 3vw, 0.95rem); }
+}
+
 /* Conference header: logo + short title (e.g., IROS 2026) */
 .conference-header {
   display: inline-flex;
