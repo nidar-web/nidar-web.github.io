@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
   <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="./static/css/index.css?v=20261009-nuscenes-heading">
+  <link rel="stylesheet" href="./static/css/index.css?v=20261009-slam-demos">
   <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -609,72 +609,53 @@
       </div>
     </div>
 
-    <!-- Row 1: Video + Trajectory Evaluation side by side (same width as Intensity Comparisons) -->
     <div class="container">
-      <div class="columns" style="margin-top: 1rem; align-items: flex-start;">
-        <!-- Left: SLAM Process Video (wider) -->
-        <div class="column is-three-fifths">
-          <div class="publication-video">
-            <video id="slam-demo" autoplay controls muted loop playsinline height="100%">
+      <div class="slam-demo-grid">
+        <figure class="slam-demo">
+          <div class="slam-media">
+            <video id="slam-demo" autoplay controls muted loop playsinline preload="metadata"
+                   poster="./static/videos/slam/isc-loam.jpg" aria-label="ISC-LOAM mapping and localization with no intensity, built-in intensity and NIDAR-generated intensity in Isaac Sim">
               <source src="./static/images/3_10.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
           </div>
-          <p class="has-text-centered" style="margin-top: 0.5rem;">
-            <strong>SLAM process visualization.</strong> Real-time mapping and localization with NIDAR-generated intensity in Isaac Sim.
-          </p>
-        </div>
-        <!-- Right: Trajectory Evaluation (narrower), matched height to video -->
-        <div class="column is-two-fifths" style="display: flex; flex-direction: column;">
-          <div id="evo-wrapper" style="flex: 1;">
-            <img src="./static/images/evo.png" alt="SLAM trajectory evaluation"
-              style="width: 100%; height: 0; display: block; border-radius: 6px;">
+          <figcaption>
+            <strong>ISC-LOAM &middot; Intensity-aware SLAM.</strong> Mapping and localization in Isaac Sim,
+            comparing no intensity, built-in intensity and NIDAR-generated intensity.
+          </figcaption>
+        </figure>
+        <figure class="slam-demo">
+          <div class="slam-media">
+            <video id="fastlio-demo" autoplay controls muted loop playsinline preload="metadata"
+                   poster="./static/videos/slam/fastlio.jpg" aria-label="FAST-LIO without intensity input; built-in and NIDAR-generated intensity are used only for point-cloud coloring and texture comparison">
+              <source src="./static/videos/slam/fastlio-intensity-colored.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
           </div>
-          <p class="has-text-justified" style="margin-top: 0.5rem;">
+          <figcaption>
+            <strong>FAST-LIO &middot; SLAM without intensity input.</strong> Built-in and NIDAR-generated intensities
+            are used only for point-cloud coloring to compare scene texture.
+          </figcaption>
+        </figure>
+        <figure class="slam-demo">
+          <div class="slam-media">
+            <img src="./static/images/evo.png" alt="SLAM trajectory evaluation" loading="lazy">
+          </div>
+          <figcaption>
             <strong>Trajectory evaluation.</strong> Trajectory visualization using the <a href="https://michaelgrupp.github.io/evo/" target="_blank" rel="noopener">evo toolbox</a>.
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <script>
-      (function() {
-        function syncEvoHeight() {
-          var video = document.getElementById('slam-demo');
-          var wrapper = document.getElementById('evo-wrapper');
-          var img = wrapper ? wrapper.querySelector('img') : null;
-          if (!video || !img) return;
-          // publication-video uses padding-bottom:56.25%, so height = width * 0.5625
-          var videoCol = video.closest('.column');
-          if (!videoCol) return;
-          var videoH = videoCol.querySelector('.publication-video').offsetHeight;
-          if (videoH > 0) {
-            img.style.height = videoH + 'px';
-            img.style.objectFit = 'contain';
-            img.style.objectPosition = 'top';
-          }
-        }
-        window.addEventListener('load', syncEvoHeight);
-        window.addEventListener('resize', syncEvoHeight);
-        // Also try after a short delay for late renders
-        setTimeout(syncEvoHeight, 300);
-      })();
-    </script>
-
-    <!-- Row 2: Model demo video (same width as text description) -->
-    <div class="container is-max-desktop">
-      <div class="columns is-centered" style="margin-top: 1.5rem;">
-        <div class="column is-four-fifths">
-          <div class="publication-video">
-            <video id="model-demo" autoplay controls muted loop playsinline height="100%">
+          </figcaption>
+        </figure>
+        <figure class="slam-demo">
+          <div class="slam-media">
+            <video id="model-demo" autoplay controls muted loop playsinline preload="metadata">
               <source src="./static/images/3_11.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
           </div>
-          <p class="has-text-centered" style="margin-top: 0.5rem;">
+          <figcaption>
             <strong>Model demonstration.</strong> Intensity-colored visualization of the NIDAR pipeline in Isaac Sim.
-          </p>
-        </div>
+          </figcaption>
+        </figure>
       </div>
     </div>
 
