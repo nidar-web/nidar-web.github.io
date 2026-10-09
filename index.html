@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
   <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="./static/css/index.css?v=20261009-ue5-logo">
+  <link rel="stylesheet" href="./static/css/index.css?v=20261009-institutions-navigation">
   <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -25,51 +25,33 @@
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
   <script src="./static/js/script.js"></script>
+  <script defer src="./static/js/navigation.js?v=20261009-institutions-navigation"></script>
 
 </head>
 
 <body>
 
-  <!-- <nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-  <div class="navbar-menu">
-    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
-      <a class="navbar-item" href="">
-      <span class="icon">
-          <i class="fas fa-home"></i>
-      </span>
-      </a>
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          More Research
-        </a>
-        <div class="navbar-dropdown">
-          <a class="navbar-item" href="https://hypernerf.github.io">
-            HyperNeRF
-          </a>
-          <a class="navbar-item" href="https://nerfies.github.io">
-            Nerfies
-          </a>
-          <a class="navbar-item" href="https://latentfusion.github.io">
-            LatentFusion
-          </a>
-          <a class="navbar-item" href="https://photoshape.github.io">
-            PhotoShape
-          </a>
-        </div>
-      </div>
+  <header class="site-header" data-site-navigation>
+    <div class="site-header-inner">
+      <a class="site-wordmark" href="#top" aria-label="NIDAR home">NIDAR</a>
+      <button class="site-nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="site-navigation-links">
+        <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+          <path d="M4 6h16M4 12h16M4 18h16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+        </svg>
+      </button>
+      <nav class="site-nav-links" id="site-navigation-links" aria-label="Page navigation">
+        <a href="#overview">Overview</a>
+        <a href="#method">Method</a>
+        <a href="#nuscenes-comparisons">nuScenes</a>
+        <a href="#isaac-sim">Isaac Sim</a>
+        <a href="#unreal-engine-5">UE5</a>
+        <a href="#behavior-cloning">Behavior Cloning</a>
+        <a href="#BibTeX">BibTeX</a>
+      </nav>
     </div>
-  </div>
-</nav> -->
+  </header>
 
-
-  <section class="hero">
+  <section class="hero" id="top">
     <div class="hero-body">
       <div class="container is-max-desktop">
         <div class="columns is-centered">
@@ -120,6 +102,11 @@
               <span class="author-block"><sup>2</sup>Shanghai Jiao Tong University</span>
               <span class="author-block"><sup>3</sup>Ministry of Industry and Information Technology</span>
               <span class="author-block"><sup>4</sup>Western China Science City Innovation Center of Intelligent and Connected Vehicles</span>
+            </div>
+            <div class="institution-logos" role="group" aria-label="Author institutions">
+              <img class="institution-logo institution-logo--seal" src="./static/images/institutions/cqu.png" width="512" height="512" alt="Chongqing University" decoding="async">
+              <img class="institution-logo institution-logo--seal" src="./static/images/institutions/sjtu-blue.png" width="1181" height="1181" alt="Shanghai Jiao Tong University" decoding="async">
+              <img class="institution-logo institution-logo--center" src="./static/images/institutions/wicv.png" width="1433" height="456" alt="Western China Science City Innovation Center of Intelligent and Connected Vehicles" decoding="async">
             </div>
             <div class="publication-links column has-text-centered">
               <span class="link-block">
@@ -243,7 +230,7 @@
     </div>
   </section>
 
-  <section class="section">
+  <section class="section" id="overview">
     <div class="container is-max-desktop">
       <!-- Teaser image -->
       <div class="columns is-centered has-text-centered">
@@ -339,7 +326,7 @@
 
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
-          <h2 class="title is-3" style="color: #006496;font-weight: bolder;">Pipeline</h2>
+          <h2 class="title is-3" id="method" style="color: #006496;font-weight: bolder;">Pipeline</h2>
           <div class="content has-text-centered">
             <figure class="image">
               <img src="./static/images/pipeline9.png" alt="NIDAR pipeline overview">

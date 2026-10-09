@@ -126,6 +126,73 @@ body {
   font-family: 'Noto Sans', sans-serif;
 }
 
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  border-bottom: 1px solid #e5edf2;
+  background: rgba(255, 255, 255, 0.97);
+  box-shadow: 0 2px 12px rgba(28, 60, 83, 0.04);
+  backdrop-filter: blur(8px);
+}
+
+.site-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  max-width: 1168px;
+  min-height: 64px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.site-wordmark {
+  display: inline-flex;
+  align-items: center;
+  min-height: 64px;
+  color: #006496;
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.site-wordmark:hover { color: #004a70; }
+.site-nav-links { display: flex; align-items: center; gap: 1.3rem; }
+.site-nav-links a { display: inline-flex; align-items: center; min-height: 44px; color: #52616f; font-size: 0.85rem; font-weight: 500; white-space: nowrap; }
+.site-nav-links a:hover { color: #0077d8; }
+.site-wordmark:focus-visible, .site-nav-links a:focus-visible, .site-nav-toggle:focus-visible { outline: 2px solid #0077d8; outline-offset: 4px; border-radius: 4px; }
+.site-nav-toggle { display: none; align-items: center; justify-content: center; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 6px; background: transparent; color: #006496; cursor: pointer; }
+.site-nav-toggle:hover { background: #edf5fa; }
+.site-nav-toggle svg { display: block; }
+
+.institution-logos { display: flex; align-items: center; justify-content: center; gap: clamp(12px, 3vw, 42px); max-width: 640px; margin: 1.5rem auto 0.5rem; }
+.institution-logo { display: block; flex: 0 1 auto; min-width: 0; max-width: 100%; height: auto; object-fit: contain; }
+.institution-logo--seal { width: 88px; }
+.institution-logo--center { width: 272px; }
+
+@media (max-width: 900px) {
+  .site-header:not([data-navigation-ready]) { position: relative; }
+  .site-header-inner { flex-wrap: wrap; gap: 0; padding: 0 1rem; }
+  .site-nav-links { flex-basis: 100%; flex-wrap: wrap; gap: 0 1.4rem; padding: 0 0 0.75rem; }
+  .site-header[data-navigation-ready] .site-nav-toggle { display: inline-flex; }
+  .site-header[data-navigation-ready] .site-nav-links { display: none; }
+  .site-header[data-navigation-ready][data-navigation-open] .site-nav-links { display: flex; flex-direction: column; align-items: stretch; }
+  .site-header[data-navigation-open] .site-nav-links a { padding: 0 0.5rem; }
+  .site-header[data-navigation-open] .site-nav-links a:hover { background: #f1f7fb; border-radius: 6px; }
+}
+
+@media (max-width: 600px) {
+  #top .hero-body { padding: 2rem 1.25rem; }
+  #top .publication-title { font-size: clamp(1.65rem, 6.8vw, 2rem); line-height: 1.2; word-break: normal; }
+  #top .conference-logo { height: 88px; }
+  #top .publication-authors.is-size-5 { font-size: 1rem !important; line-height: 1.65; }
+  #top .publication-affiliations.is-size-5 { font-size: 0.875rem !important; line-height: 1.6; }
+  #top .publication-links { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 0.5rem; padding-left: 0; padding-right: 0; }
+  #top .publication-links .publication-link { min-height: 42px; margin: 0; padding: 0 0.75rem; font-size: 0.875rem; }
+  .institution-logo--seal { width: clamp(48px, 14vw, 64px); }
+  .institution-logo--center { width: clamp(144px, 44vw, 220px); }
+}
 
 .footer .icon-link {
     font-size: 25px;
@@ -737,3 +804,7 @@ or restructure the HTML so the image isn't absolutely positioned. The
 transparent background ensures no visible black edges even if the container
 ratio does not match the image.
 */
+
+/* Keep section headings below the sticky page navigation. */
+#top, #overview, #method, #nuscenes-comparisons, #isaac-sim,
+#unreal-engine-5, #behavior-cloning, #BibTeX { scroll-margin-top: 5rem; }
