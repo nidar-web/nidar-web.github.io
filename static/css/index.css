@@ -328,12 +328,16 @@ body {
 .publication-authors {
 }
 
-.publication-authors a {
-   color: hsl(204, 86%, 53%) !important;
+.publication-authors a,
+.publication-authors a:visited {
+  color: inherit;
 }
 
-.publication-authors a:hover {
-    text-decoration: underline;
+.publication-authors a:hover,
+.publication-authors a:active,
+.publication-authors a:focus-visible {
+  color: hsl(204, 86%, 53%);
+  text-decoration: underline;
 }
 
 .author-block {
