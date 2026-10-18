@@ -1,53 +1,31 @@
 class BeforeAfter {
-    constructor(enteryObject) {
+    constructor(options) {
+        const container = document.querySelector(options.id);
+        const before = container.querySelector('.bal-before');
+        const inset = container.querySelector('.bal-before-inset');
+        const afterText = container.querySelector('.bal-afterPosition');
+        const handle = container.querySelector('.bal-handle');
 
-        const beforeAfterContainer = document.querySelector(enteryObject.id);
-        const before = beforeAfterContainer.querySelector('.bal-before');
-        const beforeText = beforeAfterContainer.querySelector('.bal-beforePosition');
-        const afterText = beforeAfterContainer.querySelector('.bal-afterPosition');
-        const handle = beforeAfterContainer.querySelector('.bal-handle');
-        var widthChange = 0;
+        const resize = () => {
+            inset.style.width = container.offsetWidth + 'px';
+        };
+        resize();
+        window.addEventListener('resize', resize);
+        before.style.width = '50%';
+        handle.style.left = '50%';
 
-        beforeAfterContainer.querySelector('.bal-before-inset').setAttribute("style", "width: " + beforeAfterContainer.offsetWidth + "px;")
-        window.onresize = function () {
-            beforeAfterContainer.querySelector('.bal-before-inset').setAttribute("style", "width: " + beforeAfterContainer.offsetWidth + "px;")
-        }
-        before.setAttribute('style', "width: 50%;");
-        handle.setAttribute('style', "left: 50%;");
-
-        //touch screen event listener
-        beforeAfterContainer.addEventListener("touchstart", (e) => {
-
-            beforeAfterContainer.addEventListener("touchmove", (e2) => {
-                let containerWidth = beforeAfterContainer.offsetWidth;
-                let currentPoint = e2.changedTouches[0].clientX;
-
-                let startOfDiv = beforeAfterContainer.offsetLeft;
-
-                let modifiedCurrentPoint = currentPoint - startOfDiv;
-
-                if (modifiedCurrentPoint > 10 && modifiedCurrentPoint < beforeAfterContainer.offsetWidth - 10) {
-                    let newWidth = modifiedCurrentPoint * 100 / containerWidth;
-
-                    before.setAttribute('style', "width:" + newWidth + "%;");
-                    afterText.setAttribute('style', "z-index: 1;");
-                    handle.setAttribute('style', "left:" + newWidth + "%;");
-                }
-            });
-        });
-
-        //mouse move event listener
-        beforeAfterContainer.addEventListener('mousemove', (e) => {
-            let containerWidth = beforeAfterContainer.offsetWidth;
-            widthChange = e.offsetX;
-            let newWidth = widthChange * 100 / containerWidth;
-
-            if (e.offsetX > 10 && e.offsetX < beforeAfterContainer.offsetWidth - 10) {
-                before.setAttribute('style', "width:" + newWidth + "%;");
-                afterText.setAttribute('style', "z-index:" + "1;");
-                handle.setAttribute('style', "left:" + newWidth + "%;");
-            }
-        })
-
+        const move = (clientX) => {
+            const bounds = container.getBoundingClientRect();
+            const offset = clientX - bounds.left;
+            if (offset <= 10 || offset >= bounds.width - 10) return;
+            const position = (offset * 100 / bounds.width) + '%';
+            before.style.width = position;
+            handle.style.left = position;
+            afterText.style.zIndex = '1';
+        };
+        container.addEventListener('mousemove', (event) => move(event.clientX));
+        container.addEventListener('touchmove', (event) => {
+            if (event.changedTouches.length) move(event.changedTouches[0].clientX);
+        }, { passive: true });
     }
 }

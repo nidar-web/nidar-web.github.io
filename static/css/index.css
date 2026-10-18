@@ -423,6 +423,7 @@ body {
 .bal-container-small {
   position: relative;
   width: 100%;
+  touch-action: pan-y pinch-zoom;
   /* use aspect ratio instead of fixed height so window width determines height and images are fully visible */
   /* padding-bottom creates a 16:9 ratio container */
   padding-bottom: 56.25%;
