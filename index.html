@@ -110,11 +110,11 @@
             </div>
             <div class="publication-links column has-text-centered">
               <span class="link-block">
-                <button type="button" class="button is-normal is-rounded publication-link publication-link--disabled" disabled aria-label="Paper (not yet available)">
+                <button type="button" class="button is-normal is-rounded publication-link publication-link--disabled" disabled aria-label="Proceedings link (not yet available)">
                   <span class="icon">
                     <i class="fas fa-file-pdf"></i>
                   </span>
-                  <span>Paper</span>
+                  <span>Proceedings</span>
                 </button>
               </span>
               <span class="link-block">
@@ -133,7 +133,18 @@
                   <span>Code</span>
                 </a>
               </span>
+              <span class="link-block">
+                <a href="https://huggingface.co/zhangjunjie587/NIDAR" class="external-link button is-normal is-rounded is-dark publication-link publication-link--available" target="_blank" rel="noopener noreferrer">
+                  <span class="icon"><i class="fas fa-download"></i></span>
+                  <span>Weights</span>
+                </a>
+              </span>
             </div>
+            <p class="is-size-6">
+              <a href="https://github.com/Zjj587/NIDAR/blob/v0.1.0/docs/RELEASE.md" target="_blank" rel="noopener noreferrer">Frozen code baseline v0.1.0</a>:
+              Waymo/nuScenes conversion, inference and IRNet training.
+              Simulator and BC videos below are research demonstrations; their reproduction packages are not included.
+            </p>
 
             </div>
           </div>
@@ -226,7 +237,7 @@
         <!-- <span class="s1">Intensity</span>&nbsp;<span class="s2">for</span>&nbsp;<span class="s3">Any</span>&nbsp;<span class="s4">LiDAR</span>&nbsp;<span class="s5">Simulator</span><span class="s-dot">.</span> -->
         <span class="s1">Intensity</span>&nbsp;<span class="s3">for</span>&nbsp;<span class="s4">Any</span>&nbsp;<span class="s5">Scenes/Simulators</span><span class="s-dot"></span>
       </p>
-      <p class="nidar-slogan-sub">A universal plug-and-play intensity layer — drop it onto any point cloud simulation pipeline, zero retraining required.</p>
+      <p class="nidar-slogan-sub">Add synthesized intensity to calibrated point clouds, without per-scene optimization in the evaluated settings.</p>
     </div>
   </section>
 
@@ -698,6 +709,13 @@
           to grasp and lift a target cube among distractors. The NIDAR output is derived from RGB, without an additional NIR sensor.
           Each clip records a trained BC policy predicting actions from successive observations in a closed loop.
         </p>
+        <p class="bc-intro">
+          These outcome-selected clips show simulation seconds 0&ndash;5, with display holds.
+          The NIDAR run lifts the target in this interval but loses success at 14.2 seconds in the 20-second continuation.
+          This is a qualitative example, not an aggregate success-rate or robustness result.
+          See the <a href="./static/videos/bc-rollout-light/preview.json">clip record and evaluation scope</a>.
+          BC training/evaluation code is not included in v0.1.0.
+        </p>
       </div>
 
       <div class="bc-scene">
@@ -802,7 +820,7 @@
   <footer class="footer">
     <div class="container">
       <div class="content has-text-centered">
-        <span class="icon-link icon-link--disabled" role="link" aria-disabled="true" aria-label="Paper (not yet available)">
+        <span class="icon-link icon-link--disabled" role="link" aria-disabled="true" aria-label="Proceedings link (not yet available)">
           <i class="fas fa-file-pdf"></i>
         </span>
         <a class="icon-link" href="https://github.com/Zjj587/NIDAR" title="Code" aria-label="View NIDAR source code on GitHub" target="_blank" rel="noopener noreferrer">
