@@ -710,12 +710,18 @@
           Each clip records a trained BC policy predicting actions from successive observations in a closed loop.
         </p>
         <p class="bc-intro">
-          These outcome-selected clips show simulation seconds 0&ndash;5, with display holds.
-          The NIDAR run lifts the target in this interval but loses success at 14.2 seconds in the 20-second continuation.
-          This is a qualitative example, not an aggregate success-rate or robustness result.
-          See the <a href="./static/videos/bc-rollout-light/preview.json">clip record and evaluation scope</a>.
-          BC training/evaluation code is not included in v0.1.0.
+          Selected qualitative rollout excerpts. Outcomes refer to the shown interval, not aggregate success rates.
         </p>
+        <details class="bc-intro" id="bc-demo-scope">
+          <summary>Demo details</summary>
+          <p>
+            These outcome-selected clips show simulation seconds 0&ndash;5, with display holds.
+            The NIDAR run lifts the target in this interval but loses success at 14.2 seconds in the 20-second continuation.
+            This is not a sustained-success or general robustness result.
+            See the <a href="./static/videos/bc-rollout-light/preview.json">clip record and evaluation scope</a>.
+            BC training/evaluation code is not included in v0.1.0.
+          </p>
+        </details>
       </div>
 
       <div class="bc-scene">
