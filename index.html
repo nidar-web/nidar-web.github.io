@@ -700,9 +700,12 @@
       <div class="bc-heading">
         <h2 class="title is-3" id="bc-title">NIDAR for Behavior Cloning</h2>
         <p class="bc-intro">
+          Simulator: <strong>MuJoCo</strong> &middot; Policy: <strong>BC-RNN (recurrent behavior cloning)</strong>.
+        </p>
+        <p class="bc-intro">
           We explore NIDAR&rsquo;s potential in imitation learning: a robot uses <strong>RGB, depth and NIDAR-derived visual cues</strong>
           to grasp and lift a target cube among distractors. The NIDAR output is derived from RGB, without an additional NIR sensor.
-          Each clip records a trained BC policy predicting actions from successive observations in a closed loop.
+          Each clip records a trained BC-RNN policy predicting actions from successive observations in a closed loop.
         </p>
         <p class="bc-intro">
           Selected qualitative rollout excerpts. Outcomes refer to the shown interval, not aggregate success rates.
